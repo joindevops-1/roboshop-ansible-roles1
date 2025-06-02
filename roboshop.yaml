@@ -7,6 +7,13 @@
     ami_id: ami-09c813fb71547fc4f
     instances: ["mongodb", "catalogue","frontend"]
   tasks:
+  - name: install boto3 and botocore
+    ansible.builtin.pip:
+      name: "{{ item }}"
+      executable: pip3.9
+    loop:
+    - boto3
+    - botocore
   - name: ec2 instance creation
     amazon.aws.ec2_instance:
       name: "public-compute-instance"
