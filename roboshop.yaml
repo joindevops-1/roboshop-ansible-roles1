@@ -5,7 +5,7 @@
     subnet_id: subnet-09863c54177764565
     sg_id: sg-01bc7ebe005fb1cb2
     ami_id: ami-09c813fb71547fc4f
-    instances: ["mongodb", "catalogue","frontend"]
+    instances: ["mongodb", "catalogue","frontend", "redis", "mysql","rabbitmq","user","cart","shipping","payment"]
   tasks:
   - name: install boto3 and botocore
     ansible.builtin.pip:
