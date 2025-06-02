@@ -16,7 +16,7 @@
     - botocore
   - name: ec2 instance creation
     amazon.aws.ec2_instance:
-      name: "public-compute-instance"
+      name: "{{ item  }}"
       vpc_subnet_id: "{{ subnet_id }}"
       instance_type: t3.micro
       security_group: "{{ sg_id }}"
