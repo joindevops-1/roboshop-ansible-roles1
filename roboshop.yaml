@@ -17,7 +17,7 @@
     - botocore
   - name: ec2 instance creation
     amazon.aws.ec2_instance:
-      state: "{{ status }}"
+      state: present
       name: "{{ item  }}"
       vpc_subnet_id: "{{ subnet_id }}"
       instance_type: t3.micro
@@ -34,7 +34,7 @@
 
   - name: create r53 records
     amazon.aws.route53:
-      state: "{{ status }}"
+      state: present
       zone: daws84s.site
       record: "{{ item.item }}.daws84s.site"
       type: A
