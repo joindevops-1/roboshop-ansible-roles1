@@ -29,3 +29,14 @@
   - name: print the ec2_output
     ansible.builtin.debug:
       msg: "{{ ec2_output }}"
+
+  - name: create r53 records
+    amazon.aws.route53:
+      state: present
+      zone: daws84s.site
+      record: "{{ item.item }}.daws84s.site"
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].private_ip_address  }}"
+      wait: true
+    loop: "{{ ec2_output.results }}"
