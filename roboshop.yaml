@@ -16,7 +16,6 @@
     - botocore
   - name: ec2 instance creation
     amazon.aws.ec2_instance:
-      state: "{{ status }}"
       name: "{{ item  }}"
       vpc_subnet_id: "{{ subnet_id }}"
       instance_type: t3.micro
@@ -33,7 +32,6 @@
 
   - name: create r53 records
     amazon.aws.route53:
-      state: "{{ status }}"
       zone: daws84s.site
       record: "{{ item.item }}.daws84s.site"
       type: A
@@ -41,3 +39,14 @@
       value: "{{ item.instances[0].private_ip_address  }}"
       overwrite: true
     loop: "{{ ec2_output.results }}"
+
+  - name: create frontend public ip
+    amazon.aws.route53:
+      zone: daws84s.site
+      record: "{{ item.item }}.daws84s.site"
+      type: A
+      ttl: 1
+      value: "{{ item.instances[0].public_ip_address  }}"
+      overwrite: true
+    loop: "{{ ec2_output.results }}"
+    when: item.item == "frontend"
