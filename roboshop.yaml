@@ -6,7 +6,7 @@
     sg_id: sg-01bc7ebe005fb1cb2
     ami_id: ami-09c813fb71547fc4f
     instances: ["mongodb", "catalogue","frontend"]
-    : " {{ status | default(present) }}"
+    status: " {{ status | default(present) }}"
   tasks:
   - name: install boto3 and botocore
     ansible.builtin.pip:
