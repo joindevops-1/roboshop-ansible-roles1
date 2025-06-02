@@ -32,6 +32,7 @@
 
   - name: create r53 records
     amazon.aws.route53:
+      state: present
       zone: daws84s.site
       record: "{{ item.item }}.daws84s.site"
       type: A
@@ -42,6 +43,7 @@
 
   - name: create frontend public ip
     amazon.aws.route53:
+      state: present
       zone: daws84s.site
       record: "{{ item.item }}.daws84s.site"
       type: A
