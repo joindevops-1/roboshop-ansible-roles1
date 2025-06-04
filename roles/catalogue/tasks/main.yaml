@@ -1,9 +1,9 @@
 - name: app setup
   ansible.builtin.import_role:
     name: common
-    tags: 
-    - test
     tasks_from: app-setup
+  tags: 
+    - test
 
 - name: nodejs setup
   ansible.builtin.import_role:
