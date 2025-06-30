@@ -4,6 +4,6 @@
   hosts: localhost
   connection: local
   vars_files:
-  - "variables-${env}.yaml"
+  - "variables-{{ env }}.yaml"
   roles: # this will automatically load a folder called roles in current working directory.
   - "{{ component }}"
